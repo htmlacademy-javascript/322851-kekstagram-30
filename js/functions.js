@@ -11,9 +11,8 @@ checkStringLength('проверяемая строка', 10); // false
 
 function checkForPalindrom(str) {
   let testStr = '';
-  str = str.replaceAll(' ', '');
-  str = str.toLowerCase();
-  for (let i = str.length - 1; i > -1; i--) {
+  str = str.replaceAll(' ', '').toLowerCase();
+  for (let i = str.length - 1; i >= 0; i--) {
     testStr += str[i];
   }
   return str === testStr;
