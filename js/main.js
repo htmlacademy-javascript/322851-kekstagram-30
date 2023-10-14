@@ -22,21 +22,20 @@ const NAMES = [
   'Вашингтон',
 ];
 
-const OCCUPATIONS = [
-  'Резчик по камню',
-  'Врач-кибернетик',
-  'Микробиолог',
-  'Архитектор',
-  'Хирург',
-  'Дизайнер',
-  'Исследователь',
-  'Режиссер',
-  'Проектировщик',
-  'Судебный эксперт',
-  'Психотерапевт',
-  'Археолог',
-  'Стоматолог-хирург',
-  'Пилот'
+const THEMES = [
+  'портрет', 'натюрморт', 'пейзаж', 'фото интерьера', 'коллаж', 'мем'
+];
+
+const QUALITIES = [
+  'классно',
+  'красиво',
+  'чудесно',
+  'свежо',
+  'актуально',
+  'отвратительно',
+  'смешно',
+  'не красиво',
+  'плохо'
 ];
 
 //Вспомогательные функции
@@ -59,7 +58,6 @@ const generateRandomIndex = (a, b) => {
       currentIndex = getRandomInteger(a, b);
     }
     indexNumbers.push(currentIndex);
-    //console.log('indexNumbers: ', indexNumbers);
     return currentIndex;
   };
 };
@@ -80,7 +78,7 @@ function createPhoto() {
     return {
       id: id,
       url: `photos/${id}.jpg`,
-      description: `Меня зовут ${getElementOfArray(NAMES)}. Мне ${getRandomInteger(18,90)}. Я - ${getElementOfArray(OCCUPATIONS)}`,
+      description: `Это ${getElementOfArray(THEMES)} и это ${getElementOfArray(QUALITIES)}.`,
       likes: getRandomInteger(15, 200),
       comments: Array.from({length: getRandomInteger(0, 30)}, createComment),
     };
