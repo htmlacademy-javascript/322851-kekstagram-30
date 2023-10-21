@@ -1,8 +1,7 @@
 import { photos } from './data';
+import { createThumbnails } from './thumbnails';
 
-// Функция, которая возвращает массив с фотографиями ))
-function showPhotos() {
-  return photos;
-}
+const pictures = document.querySelector('.pictures');
 
-showPhotos();
+pictures.appendChild(createThumbnails(photos));
+

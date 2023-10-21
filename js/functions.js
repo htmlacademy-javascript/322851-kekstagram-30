@@ -1,6 +1,4 @@
-function checkStringLength(str, num) {
-  return str.length <= num;
-}
+const checkStringLength = (str, num) => str.length <= num;
 
 // Cтрока короче 20 символов
 checkStringLength('проверяемая строка', 20); // true
@@ -9,14 +7,14 @@ checkStringLength('проверяемая строка', 18); // true
 // Строка длиннее 10 символов
 checkStringLength('проверяемая строка', 10); // false
 
-function checkForPalindrom(str) {
+const checkForPalindrom = (str) => {
   let testStr = '';
   str = str.replaceAll(' ', '').toLowerCase();
   for (let i = str.length - 1; i >= 0; i--) {
     testStr += str[i];
   }
   return str === testStr;
-}
+};
 
 // Строка является палиндромом
 checkForPalindrom('топот'); // true
@@ -27,7 +25,7 @@ checkForPalindrom('Кекс'); // false
 // Это палиндром
 checkForPalindrom('Лёша на полке клопа нашёл '); // true
 
-function getNumbersFromString(str) {
+const getNumbersFromString = (str) => {
   str = String(str);
   let result = '';
   for (let i = 0; i < str.length; i++) {
@@ -37,7 +35,7 @@ function getNumbersFromString(str) {
     }
   }
   return parseInt(result, 10);
-}
+};
 
 getNumbersFromString('2023 год'); // 2023
 getNumbersFromString('ECMAScript 2022'); // 2022
@@ -47,12 +45,11 @@ getNumbersFromString(2023); // 2023
 getNumbersFromString(-1); // 1
 getNumbersFromString(1.5); // 15
 
-
-function checkTimeTable(dayStart, dayFinish, meetStart, meetDuration) {
-  function parseTime(timeStr) {
+const checkTimeTable = (dayStart, dayFinish, meetStart, meetDuration) => {
+  const parseTime = (timeStr) => {
     timeStr = timeStr.split(':');
     return parseInt(timeStr[0], 10) * 60 + parseInt(timeStr[1], 10);
-  }
+  };
   dayStart = parseTime(dayStart);
   dayFinish = parseTime(dayFinish);
   meetStart = parseTime(meetStart);
@@ -61,7 +58,7 @@ function checkTimeTable(dayStart, dayFinish, meetStart, meetDuration) {
     return false;
   }
   return true;
-}
+};
 
 checkTimeTable('08:00', '17:30', '14:00', 90); // true
 checkTimeTable('8:0', '10:0', '8:0', 120); // true

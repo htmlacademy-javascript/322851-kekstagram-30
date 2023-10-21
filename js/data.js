@@ -1,8 +1,7 @@
-import { getElementOfArray, getRandomInteger, generateRandomIndex } from './utils.js';
+import { getElementOfArray, getRandomInteger, generateRandomIndex } from './util.js';
+import { PHOTOS_NUM, AVATAR_NUM } from './constants.js';
 
 // Исходные данные
-const PHOTOS_NUM = 25;
-const AVATAR_NUM = 6;
 
 const MESSAGES = [
   'Всё отлично!',
@@ -28,49 +27,29 @@ const THEMES = [
   'портрет', 'натюрморт', 'пейзаж', 'фото интерьера', 'коллаж', 'мем'
 ];
 
-const QUALITIES = [
-  'классно',
-  'красиво',
-  'чудесно',
-  'свежо',
-  'актуально',
-  'отвратительно',
-  'смешно',
-  'не красиво',
-  'плохо'
-];
+// Генераторы индексов
+const generateCommentIndex = generateRandomIndex(1, 750);
+const generatePhotoIndex = generateRandomIndex(1, PHOTOS_NUM);
 
 // Основные функции
+const createComment = () => ({
+  id: generateCommentIndex(),
+  avatar: `img/avatar-${getRandomInteger(1, AVATAR_NUM)}.svg`,
+  message: getElementOfArray(MESSAGES),
+  name: getElementOfArray(NAMES),
+});
 
-const generateCommentIndex = generateRandomIndex(1, 750);
-const generatePhoto = createPhoto();
-
-function createPhoto() {
-  const generatePhotoIndex = generateRandomIndex(1, PHOTOS_NUM);
-
-  return function() {
-    const id = generatePhotoIndex();
-
-    return {
-      id: id,
-      url: `photos/${id}.jpg`,
-      description: `Это ${getElementOfArray(THEMES)} и это ${getElementOfArray(QUALITIES)}.`,
-      likes: getRandomInteger(15, 200),
-      comments: Array.from({length: getRandomInteger(0, 30)}, createComment),
-    };
-  };
-}
-
-function createComment() {
+const createPhoto = () => {
+  const id = generatePhotoIndex();
   return {
-    id: generateCommentIndex(),
-    avatar: `img/avatar-${getRandomInteger(1, AVATAR_NUM)}.svg`,
-    message: getElementOfArray(MESSAGES),
-    name: getElementOfArray(NAMES),
+    id: id,
+    url: `photos/${id}.jpg`,
+    description: `Это ${getElementOfArray(THEMES)}`,
+    likes: getRandomInteger(15, 200),
+    comments: Array.from({length: getRandomInteger(0, 30)}, createComment),
   };
-}
+};
 
-const photos = Array.from({length: PHOTOS_NUM}, generatePhoto);
-//console.log(photos.sort((a,b) => a.id - b.id));
+const photos = Array.from({length: PHOTOS_NUM}, createPhoto);
 
 export { photos };
