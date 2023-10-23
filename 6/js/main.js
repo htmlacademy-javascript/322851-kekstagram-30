@@ -1,7 +1,5 @@
-import { photos } from './data';
-import { createThumbnails } from './thumbnails';
+import { photos } from './data.js';
+import { renderThumbnails } from './thumbnails.js';
 
-const pictures = document.querySelector('.pictures');
-
-pictures.appendChild(createThumbnails(photos));
+renderThumbnails(photos);
 

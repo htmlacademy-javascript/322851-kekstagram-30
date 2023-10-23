@@ -1,6 +1,7 @@
 const thumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
+const pictures = document.querySelector('.pictures');
 
-const createThumbnails = (photos) => {
+const renderThumbnails = (photos) => {
   const thumbnailsListFragment = document.createDocumentFragment();
   photos.forEach(({url, description, likes, comments}) => {
     const thumbnail = thumbnailTemplate.cloneNode(true);
@@ -11,7 +12,8 @@ const createThumbnails = (photos) => {
     thumbnail.querySelector('.picture__likes').textContent = likes;
     thumbnailsListFragment.append(thumbnail);
   });
+  pictures.append(thumbnailsListFragment);
   return thumbnailsListFragment;
 };
 
-export { createThumbnails };
+export { renderThumbnails };
