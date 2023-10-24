@@ -1,8 +1,5 @@
-import { photos } from './data';
+import { photos } from './data.js';
+import { renderThumbnails } from './thumbnails.js';
 
-// Функция, которая возвращает массив с фотографиями ))
-function showPhotos() {
-  return photos;
-}
+renderThumbnails(photos);
 
-showPhotos();
