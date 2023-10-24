@@ -24,4 +24,6 @@ const generateRandomIndex = (a, b) => {
 
 const getElementOfArray = (arr) => arr[getRandomInteger(0, arr.length - 1)];
 
-export { getElementOfArray, generateRandomIndex, getRandomInteger };
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export { getElementOfArray, generateRandomIndex, getRandomInteger, isEscapeKey };

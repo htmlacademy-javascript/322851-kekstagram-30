@@ -16,4 +16,4 @@ const renderThumbnails = (photos) => {
   return thumbnailsListFragment;
 };
 
-export { renderThumbnails };
+export { renderThumbnails, pictures };
