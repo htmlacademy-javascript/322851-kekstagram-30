@@ -38,6 +38,7 @@ const renderBigPicture = (evt) => {
   img.alt = currentPhoto.description;
   bigPicture.querySelector('.social__caption').textContent = currentPhoto.description;
   bigPicture.querySelector('.likes-count').textContent = currentPhoto.likes;
+  bigPicture.querySelector('.social__comment-shown-count').textContent = (currentPhoto.comments.length < 5) ? currentPhoto.comments.length : 5;
   bigPicture.querySelector('.social__comment-total-count').textContent = currentPhoto.comments.length;
   loadComments(currentPhoto.comments, 0);
 };
