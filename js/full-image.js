@@ -15,23 +15,30 @@ const onCancelButtonKeydown = (evt) => {
 
 const loadComments = (comments, count) => {
   const commentsList = bigPicture.querySelector('.social__comments');
-  const commentElement = commentsList.querySelector('li');
   commentsList.innerHTML = '';
   for (let i = count; i < count + 5; i++) {
     if (i >= comments.length) {
       break;
     }
-    const newComment = commentElement.cloneNode(true);
-    const newCommentImg = newComment.querySelector('.social__picture');
+    const newComment = document.createElement('li');
+    newComment.classList.add('social__comment');
+    const newCommentImg = document.createElement('img');
+    newCommentImg.classList.add('social__picture');
     newCommentImg.src = comments[i].avatar;
     newCommentImg.alt = comments[i].name;
-    newComment.querySelector('.social__text').textContent = comments[i].message;
+    newCommentImg.width = 35;
+    newCommentImg.height = 35;
+    const newCommentMessage = document.createElement('p');
+    newCommentMessage.classList.add('social__text');
+    newCommentMessage.textContent = comments[i].message;
+    newComment.append(newCommentImg);
+    newComment.append(newCommentMessage);
     commentsList.append(newComment);
   }
 };
 
 const renderBigPicture = (evt) => {
-  const pictureId = evt.target.src.split('photos/')[1].split('.')[0];
+  const pictureId = evt.target.parentNode.id.split('-')[1];
   const currentPhoto = photos.filter((photo) => (photo.id === parseInt(pictureId, 10)))[0];
   const img = bigPicture.querySelector('.big-picture__img img');
   img.src = currentPhoto.url;
