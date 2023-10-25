@@ -3,8 +3,9 @@ const pictures = document.querySelector('.pictures');
 
 const renderThumbnails = (photos) => {
   const thumbnailsListFragment = document.createDocumentFragment();
-  photos.forEach(({url, description, likes, comments}) => {
+  photos.forEach(({id, url, description, likes, comments}) => {
     const thumbnail = thumbnailTemplate.cloneNode(true);
+    thumbnail.id = `picture-${id}`;
     const img = thumbnail.querySelector('.picture__img');
     img.src = url;
     img.alt = description;
@@ -16,4 +17,4 @@ const renderThumbnails = (photos) => {
   return thumbnailsListFragment;
 };
 
-export { renderThumbnails };
+export { renderThumbnails, pictures };
