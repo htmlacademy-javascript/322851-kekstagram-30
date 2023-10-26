@@ -40,7 +40,9 @@ const renderBigPicture = ({url, description, likes, comments}) => {
 };
 
 loaderButton.addEventListener('click', () => {
-  loadComments();
+  if (count < currentComments.length) {
+    loadComments();
+  }
 });
 
 
