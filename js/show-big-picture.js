@@ -16,13 +16,13 @@ const onCancelButtonKeydown = (evt) => {
 
 function closeBigPicture() {
   bigPicture.classList.add('hidden');
-  document.body.classList.remove('.modal-open');
+  document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onCancelButtonKeydown);
 }
 
 const showBigPicture = () => {
   bigPicture.classList.remove('hidden');
-  document.body.classList.add('.modal-open');
+  document.body.classList.add('modal-open');
   const cancelButton = bigPicture.querySelector('#picture-cancel');
   document.addEventListener('keydown', onCancelButtonKeydown);
   cancelButton.addEventListener('click', onCancelButtonClick);
