@@ -30,6 +30,8 @@ function closeImageForm() {
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onCancelButtonKeydown);
   uploadInputElement.files = '';
+  hashTagField.value = '';
+  commentField.value = '';
 }
 
 uploadInputElement.addEventListener('change', () => {
