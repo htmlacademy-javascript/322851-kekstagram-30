@@ -3,16 +3,16 @@ const hashTagField = document.querySelector('.text__hashtags');
 const commentField = document.querySelector('.text__description');
 
 const validateHashTags = (values) => {
+  const tags = values.split(/\s+/);
   if (!values.length) {
     return true;
   }
-  const tags = values.split(' ');
   const set = new Set(tags);
   return tags.length <= 5 && tags.every((tag) => regexp.test(tag)) && set.size === tags.length;
 };
 
 const getHashtagErrorMessage = () => {
-  const tags = hashTagField.value.split(' ');
+  const tags = hashTagField.value.split(/\s+/);
   const set = new Set(tags);
   if (tags.length > 5) {
     return 'Не более пяти хэштэгов';

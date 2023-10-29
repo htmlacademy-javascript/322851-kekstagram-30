@@ -1,17 +1,23 @@
 import { isEscapeKey } from './util.js';
 import { createValidator, hashTagField, commentField } from './validators.js';
 
+
 const form = document.querySelector('#upload-select-image');
 const uploadInputElement = form.querySelector('#upload-file');
 const editorBox = form.querySelector('.img-upload__overlay');
 const cancelButton = form.querySelector('.img-upload__cancel');
+const pristine = createValidator(form);
 
 hashTagField.addEventListener('keydown', (evt) => {
-  evt.stopPropagation();
+  if (isEscapeKey(evt)) {
+    evt.stopPropagation();
+  }
 });
 
 commentField.addEventListener('keydown', (evt) => {
-  evt.stopPropagation();
+  if (isEscapeKey(evt)) {
+    evt.stopPropagation();
+  }
 });
 
 
@@ -29,7 +35,7 @@ function closeImageForm() {
   editorBox.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onCancelButtonKeydown);
-  uploadInputElement.files = '';
+  uploadInputElement.files = null;
   hashTagField.value = '';
   commentField.value = '';
 }
@@ -43,7 +49,7 @@ uploadInputElement.addEventListener('change', () => {
 
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  if (createValidator(form).validate()) {
+  if (pristine.validate()) {
     form.submit();
   }
 });
