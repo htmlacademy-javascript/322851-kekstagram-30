@@ -1,0 +1,7 @@
+import { photos } from './data.js';
+import { renderThumbnails } from './thumbnails.js';
+import './show-big-picture.js';
+import './image-upload-form.js';
+
+renderThumbnails(photos);
+
