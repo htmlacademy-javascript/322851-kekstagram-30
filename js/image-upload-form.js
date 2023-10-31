@@ -1,6 +1,6 @@
 import { isEscapeKey } from './util.js';
 import { createValidator, hashTagField, commentField } from './validators.js';
-
+import { cancelEffects } from './edit-image.js';
 
 const form = document.querySelector('#upload-select-image');
 const uploadInputElement = form.querySelector('#upload-file');
@@ -38,6 +38,7 @@ function closeImageForm() {
   uploadInputElement.files = null;
   hashTagField.value = '';
   commentField.value = '';
+  cancelEffects();
 }
 
 uploadInputElement.addEventListener('change', () => {
