@@ -9,4 +9,15 @@ const EFFECTS = {
   'heat': {min: 1, max: 3, step: 0.1, start: 3}
 };
 
-export { PHOTOS_NUM, AVATAR_NUM, COMMENTS_NUM, EFFECTS };
+const BASE_URL = 'https://30.javascript.pages.academy/kekstagram';
+const ROUTES = {
+  'getData': '/data',
+  'postData': '/'
+};
+
+const METHODS = {
+  'POST': 'post',
+  'GET': 'get'
+};
+
+export { PHOTOS_NUM, AVATAR_NUM, COMMENTS_NUM, EFFECTS, BASE_URL, ROUTES, METHODS };

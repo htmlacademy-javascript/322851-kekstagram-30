@@ -1,12 +1,17 @@
 import { isEscapeKey } from './util.js';
 import { createValidator, hashTagField, commentField } from './validators.js';
 import { cancelEffects } from './edit-image.js';
+import { postRequest } from './api.js';
+import { showFormMessage } from './errors.js';
 
 const form = document.querySelector('#upload-select-image');
 const uploadInputElement = form.querySelector('#upload-file');
 const editorBox = form.querySelector('.img-upload__overlay');
 const cancelButton = form.querySelector('.img-upload__cancel');
 const pristine = createValidator(form);
+const formErrorTemplate = document.querySelector('#error').content.querySelector('.error');
+const formSuccessTemplate = document.querySelector('#success').content.querySelector('.success');
+
 
 hashTagField.addEventListener('keydown', (evt) => {
   if (isEscapeKey(evt)) {
@@ -22,8 +27,9 @@ commentField.addEventListener('keydown', (evt) => {
 
 
 const onCancelButtonKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
+  if (isEscapeKey(evt) && !document.querySelector('.error')) {
     closeImageForm();
+    document.removeEventListener('keydown', onCancelButtonKeydown);
   }
 };
 
@@ -33,12 +39,9 @@ const onCancelButtonClick = () => {
 
 function closeImageForm() {
   editorBox.classList.add('hidden');
-  document.body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onCancelButtonKeydown);
-  uploadInputElement.files = null;
-  hashTagField.value = '';
-  commentField.value = '';
+  form.reset();
   cancelEffects();
+  document.body.classList.remove('modal-open');
 }
 
 uploadInputElement.addEventListener('change', () => {
@@ -51,7 +54,15 @@ uploadInputElement.addEventListener('change', () => {
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
   if (pristine.validate()) {
-    form.submit();
+    const data = new FormData(form);
+    postRequest(data)
+      .then(() => {
+        showFormMessage(formSuccessTemplate);
+        closeImageForm();
+      })
+      .catch(() => {
+        showFormMessage(formErrorTemplate);
+      });
   }
 });
 

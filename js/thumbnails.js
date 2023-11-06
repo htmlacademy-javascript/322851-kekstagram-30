@@ -1,3 +1,6 @@
+import { showBigPicture } from './show-big-picture.js';
+import { renderBigPicture } from './render-big-picture.js';
+
 const thumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const pictures = document.querySelector('.pictures');
 
@@ -14,6 +17,15 @@ const renderThumbnails = (photos) => {
     thumbnailsListFragment.append(thumbnail);
   });
   pictures.append(thumbnailsListFragment);
+  pictures.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('picture__img')) {
+      const pictureId = evt.target.parentNode.id.split('-')[1];
+      const currentPhoto = photos.filter((photo) => (photo.id === parseInt(pictureId, 10)))[0];
+      renderBigPicture(currentPhoto);
+      showBigPicture();
+    }
+
+  });
   return thumbnailsListFragment;
 };
 
