@@ -16,12 +16,18 @@ const getRandomPhotos = (photos) => {
 
 const onFiltersClick = (evt, photos) => {
   let newPhotos = photos.slice();
+  filtersBox.querySelector('.img-filters__button--active').classList.remove('img-filters__button--active');
   switch (evt.target.id.split('-')[1]) {
     case 'random':
+      filtersBox.querySelector('#filter-random').classList.add('img-filters__button--active');
       newPhotos = getRandomPhotos(photos);
       break;
     case 'discussed':
+      filtersBox.querySelector('#filter-discussed').classList.add('img-filters__button--active');
       newPhotos = photos.slice().sort((a, b) => b.comments.length - a.comments.length);
+      break;
+    case 'default':
+      filtersBox.querySelector('#filter-default').classList.add('img-filters__button--active');
       break;
   }
   renderer(newPhotos);

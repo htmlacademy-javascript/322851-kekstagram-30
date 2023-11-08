@@ -12,7 +12,7 @@ noUiSlider.create(sliderElement, {
 });
 
 const updateSlider = ({min, max, start, step}) => {
-  sliderBox.classList?.remove('hidden');
+  sliderBox.classList.remove('hidden');
   sliderElement.noUiSlider.updateOptions({
     range: {
       min: min,
