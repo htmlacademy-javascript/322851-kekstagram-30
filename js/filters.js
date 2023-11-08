@@ -2,6 +2,7 @@ import { renderThumbnails } from './thumbnails.js';
 import { generateRandomIndex, debounce } from './util.js';
 import { RERENDER_DELAY } from './constants.js';
 
+const renderer = debounce((photos) => renderThumbnails(photos), RERENDER_DELAY);
 const filtersBox = document.querySelector('.img-filters');
 
 const getRandomPhotos = (photos) => {
@@ -23,7 +24,7 @@ const onFiltersClick = (evt, photos) => {
       newPhotos = photos.slice().sort((a, b) => b.comments.length - a.comments.length);
       break;
   }
-  debounce(() => renderThumbnails(newPhotos), RERENDER_DELAY)();
+  renderer(newPhotos);
 };
 
 const applyFilters = (photos) => {
