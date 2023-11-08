@@ -4,7 +4,13 @@ import { renderBigPicture } from './render-big-picture.js';
 const thumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const pictures = document.querySelector('.pictures');
 
+const clearThumbnails = () => {
+  const thumbnails = document.querySelectorAll('.picture');
+  thumbnails.forEach((thumbnail) => thumbnail.remove());
+};
+
 const renderThumbnails = (photos) => {
+  clearThumbnails();
   const thumbnailsListFragment = document.createDocumentFragment();
   photos.forEach(({id, url, description, likes, comments}) => {
     const thumbnail = thumbnailTemplate.cloneNode(true);

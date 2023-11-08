@@ -3,6 +3,7 @@ import { createValidator, hashTagField, commentField } from './validators.js';
 import { cancelEffects } from './edit-image.js';
 import { postRequest } from './api.js';
 import { showFormMessage } from './errors.js';
+import { FILE_TYPES } from './constants.js';
 
 const form = document.querySelector('#upload-select-image');
 const uploadInputElement = form.querySelector('#upload-file');
@@ -11,6 +12,10 @@ const cancelButton = form.querySelector('.img-upload__cancel');
 const pristine = createValidator(form);
 const formErrorTemplate = document.querySelector('#error').content.querySelector('.error');
 const formSuccessTemplate = document.querySelector('#success').content.querySelector('.success');
+const imagePreview = form.querySelector('.img-upload__preview img');
+
+
+const checkImageType = (name) => FILE_TYPES.some((value) => name.endsWith(value));
 
 
 hashTagField.addEventListener('keydown', (evt) => {
@@ -45,6 +50,10 @@ function closeImageForm() {
 }
 
 uploadInputElement.addEventListener('change', () => {
+  const file = uploadInputElement.files[0];
+  if (checkImageType(file.name)) {
+    imagePreview.src = URL.createObjectURL(file);
+  }
   editorBox.classList.remove('hidden');
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onCancelButtonKeydown);
