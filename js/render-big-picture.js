@@ -10,7 +10,7 @@ const commentElementTemplate = document.querySelector('.social__comment');
 const commentsList = bigPicture.querySelector('.social__comments');
 const loaderButton = bigPicture.querySelector('.social__comments-loader');
 let count = 0;
-let currentComments;
+const currentComments = [];
 
 
 const createNewComment = ({avatar, name, message}) => {
@@ -44,7 +44,8 @@ const renderBigPicture = ({url, description, likes, comments}) => {
   totalCommentsCount.textContent = comments.length;
   commentsList.innerHTML = '';
   count = 0;
-  currentComments = comments;
+  currentComments.length = 0;
+  currentComments.push(...comments);
   if (loaderButton.classList.contains('hidden')) {
     loaderButton.classList.remove('hidden');
   }

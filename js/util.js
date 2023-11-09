@@ -11,7 +11,7 @@ const generateRandomIndex = (a, b) => {
   const indexNumbers = [];
   return () => {
     let currentIndex = getRandomInteger(a, b);
-    if (indexNumbers.length === Math.floor(Math.max(a, b))) {
+    if (indexNumbers.length === Math.floor(Math.max(a, b) + 1)) {
       return '';
     }
     while (indexNumbers.includes(currentIndex)) {
@@ -22,8 +22,16 @@ const generateRandomIndex = (a, b) => {
   };
 };
 
+const debounce = (cb, delay) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => cb.apply(this, rest), delay);
+  };
+};
+
 const getElementOfArray = (arr) => arr[getRandomInteger(0, arr.length - 1)];
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export { getElementOfArray, generateRandomIndex, getRandomInteger, isEscapeKey };
+export { getElementOfArray, generateRandomIndex, getRandomInteger, isEscapeKey, debounce };
