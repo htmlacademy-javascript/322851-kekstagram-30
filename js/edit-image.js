@@ -1,5 +1,5 @@
 import { updateSlider, sliderElement, sliderBox } from './slider.js';
-import { EFFECTS } from './constants.js';
+import { Effects } from './constants.js';
 
 const img = document.querySelector('.img-upload__preview img');
 const biggerScaleButton = document.querySelector('.scale__control--bigger');
@@ -7,8 +7,9 @@ const smallerScaleButton = document.querySelector('.scale__control--smaller');
 const scaleValue = document.querySelector('.scale__control--value');
 const effectChoice = document.querySelector('.effects__list');
 const effectValue = document.querySelector('.effect-level__value');
-sliderBox.classList.add('hidden');
 let currentEffect = 'none';
+
+sliderBox.classList.add('hidden');
 
 const cancelEffects = () => {
   sliderBox.classList.add('hidden');
@@ -55,7 +56,6 @@ smallerScaleButton.addEventListener('click', () => {
   }
 });
 
-
 effectChoice.addEventListener('click', (evt) => {
   if (evt.target.tagName === 'INPUT') {
     currentEffect = evt.target.value;
@@ -64,19 +64,19 @@ effectChoice.addEventListener('click', (evt) => {
         cancelEffects();
         break;
       case 'chrome':
-        updateSlider(EFFECTS.chrome);
+        updateSlider(Effects.CHROME);
         break;
       case 'sepia':
-        updateSlider(EFFECTS.sepia);
+        updateSlider(Effects.SEPIA);
         break;
       case 'marvin':
-        updateSlider(EFFECTS.marvin);
+        updateSlider(Effects.MARVIN);
         break;
       case 'phobos':
-        updateSlider(EFFECTS.phobos);
+        updateSlider(Effects.PHOBOS);
         break;
       case 'heat':
-        updateSlider(EFFECTS.heat);
+        updateSlider(Effects.HEAT);
         break;
     }
   }

@@ -1,4 +1,4 @@
-import { BASE_URL, ROUTES, METHODS } from './constants.js';
+import { BASE_URL, Routes, Methods } from './constants.js';
 
 const load = (path, method, data = null) => fetch(`${BASE_URL}${path}`, {method: method, body: data})
   .then((response) => {
@@ -13,8 +13,8 @@ const load = (path, method, data = null) => fetch(`${BASE_URL}${path}`, {method:
   );
 
 
-const getRequest = () => load(ROUTES.getData, METHODS.GET);
+const getRequest = () => load(Routes.GET_DATA, Methods.GET);
 
-const postRequest = (data) => load(ROUTES.postData, METHODS.POST, data);
+const postRequest = (data) => load(Routes.POST_DATA, Methods.POST, data);
 
 export { getRequest, postRequest };

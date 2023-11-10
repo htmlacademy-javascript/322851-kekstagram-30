@@ -30,8 +30,6 @@ const debounce = (cb, delay) => {
   };
 };
 
-const getElementOfArray = (arr) => arr[getRandomInteger(0, arr.length - 1)];
-
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export { getElementOfArray, generateRandomIndex, getRandomInteger, isEscapeKey, debounce };
+export { generateRandomIndex, getRandomInteger, isEscapeKey, debounce };

@@ -18,9 +18,8 @@ const onCancelButtonKeydown = (evt) => {
 
 const onDocumentClick = (evt) => {
   evt.stopPropagation();
-  if (!evt.target.classList.contains('success') || !evt.target.classList.contains('error')) {
+  if (!evt.target.classList.contains('success__inner') && !evt.target.classList.contains('error__inner')) {
     closeMessageBox();
-
   }
 };
 
