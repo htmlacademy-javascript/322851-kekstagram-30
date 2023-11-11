@@ -3,21 +3,23 @@ const hashTagField = document.querySelector('.text__hashtags');
 const commentField = document.querySelector('.text__description');
 
 const validateHashTags = (values) => {
-  const tags = values.split(/\s+/);
+  let tagsArray = values.split(/\s+/);
+  tagsArray = tagsArray.map((tag) => tag.toLowerCase());
   if (!values.length) {
     return true;
   }
-  const set = new Set(tags);
-  return tags.length <= 5 && tags.every((tag) => regexp.test(tag)) && set.size === tags.length;
+  const tagsSet = new Set(tagsArray);
+  return tagsArray.length <= 5 && tagsArray.every((tag) => regexp.test(tag)) && tagsSet.size === tagsArray.length;
 };
 
 const getHashtagErrorMessage = () => {
-  const tags = hashTagField.value.split(/\s+/);
-  const set = new Set(tags);
-  if (tags.length > 5) {
+  let tagsArray = hashTagField.value.split(/\s+/);
+  tagsArray = tagsArray.map((tag) => tag.toLowerCase());
+  const tagsSet = new Set(tagsArray);
+  if (tagsArray.length > 5) {
     return 'Не более пяти хэштэгов';
   }
-  if (set.size !== tags.length) {
+  if (tagsSet.size !== tagsArray.length) {
     return 'Одинаковые хэштэги';
   }
   return 'Неправильный хэштэг';
@@ -26,6 +28,7 @@ const getHashtagErrorMessage = () => {
 const createValidator = (form) => {
   const pristine = new Pristine(form, {
     classTo: 'img-upload__form',
+    errorTextTag: 'div',
     errorTextParent: 'img-upload__field-wrapper',
     errorTextClass: 'img-upload__field-wrapper--error',
   });

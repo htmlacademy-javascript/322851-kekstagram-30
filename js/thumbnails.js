@@ -2,7 +2,7 @@ import { showBigPicture } from './show-big-picture.js';
 import { renderBigPicture } from './render-big-picture.js';
 
 const thumbnailTemplate = document.querySelector('#picture').content.querySelector('.picture');
-const pictures = document.querySelector('.pictures');
+const picturesBox = document.querySelector('.pictures');
 
 const clearThumbnails = () => {
   const thumbnails = document.querySelectorAll('.picture');
@@ -22,8 +22,8 @@ const renderThumbnails = (photos) => {
     thumbnail.querySelector('.picture__likes').textContent = likes;
     thumbnailsListFragment.append(thumbnail);
   });
-  pictures.append(thumbnailsListFragment);
-  pictures.addEventListener('click', (evt) => {
+  picturesBox.append(thumbnailsListFragment);
+  picturesBox.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('picture__img')) {
       const pictureId = evt.target.parentNode.id.split('-')[1];
       const currentPhoto = photos.filter((photo) => (photo.id === parseInt(pictureId, 10)))[0];
@@ -35,4 +35,4 @@ const renderThumbnails = (photos) => {
   return thumbnailsListFragment;
 };
 
-export { renderThumbnails, pictures };
+export { renderThumbnails, picturesBox };

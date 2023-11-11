@@ -9,9 +9,8 @@ const shownCommentsCount = bigPicture.querySelector('.social__comment-shown-coun
 const commentElementTemplate = document.querySelector('.social__comment');
 const commentsList = bigPicture.querySelector('.social__comments');
 const loaderButton = bigPicture.querySelector('.social__comments-loader');
-let count = 0;
 const currentComments = [];
-
+let count = 0;
 
 const createNewComment = ({avatar, name, message}) => {
   const newComment = commentElementTemplate.cloneNode(true);
