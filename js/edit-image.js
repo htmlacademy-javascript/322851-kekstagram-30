@@ -1,5 +1,6 @@
 import { updateSlider, sliderElement, sliderBox } from './slider.js';
 import { Effects } from './constants.js';
+import { MAX_SCALE_VALUE, MIN_SCALE_VALUE, SCALE_STEP } from './constants.js';
 
 const img = document.querySelector('.img-upload__preview img');
 const biggerScaleButton = document.querySelector('.scale__control--bigger');
@@ -16,6 +17,11 @@ const cancelEffects = () => {
   img.style = 'none';
   scaleValue.value = '100%';
   document.querySelector('#effect-none').checked = true;
+};
+
+const setScaleValue = (newScale) => {
+  scaleValue.value = `${newScale}%`;
+  img.style.transform = `scale(${newScale / 100})`;
 };
 
 const applyEffect = () => {
@@ -41,18 +47,16 @@ const applyEffect = () => {
 };
 
 biggerScaleButton.addEventListener('click', () => {
-  if (parseInt(scaleValue.value, 10) < 100) {
-    const newScale = parseInt(scaleValue.value, 10) + 25;
-    scaleValue.value = `${newScale}%`;
-    img.style.transform = `scale(${newScale / 100})`;
+  if (parseInt(scaleValue.value, 10) < MAX_SCALE_VALUE) {
+    const newScale = parseInt(scaleValue.value, 10) + SCALE_STEP;
+    setScaleValue(newScale);
   }
 });
 
 smallerScaleButton.addEventListener('click', () => {
-  if (parseInt(scaleValue.value, 10) > 25) {
-    const newScale = parseInt(scaleValue.value, 10) - 25;
-    scaleValue.value = `${newScale}%`;
-    img.style.transform = `scale(${newScale / 100})`;
+  if (parseInt(scaleValue.value, 10) > MIN_SCALE_VALUE) {
+    const newScale = parseInt(scaleValue.value, 10) - SCALE_STEP;
+    setScaleValue(newScale);
   }
 });
 
