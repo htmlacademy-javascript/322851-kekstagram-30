@@ -1,7 +1,8 @@
-const PHOTOS_NUM = 25;
-const AVATAR_NUM = 6;
 const COMMENTS_NUM = 5;
 const RERENDER_DELAY = 500;
+const MAX_SCALE_VALUE = 100;
+const MIN_SCALE_VALUE = 25;
+const SCALE_STEP = 25;
 const Effects = {
   'CHROME': {min: 0, max: 1, step: 0.1, start: 1},
   'SEPIA': {min: 0, max: 1, step: 0.1, start: 1},
@@ -25,8 +26,6 @@ const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 const RANDOM_PHOTOS_COUNT = 10;
 
 export {
-  PHOTOS_NUM,
-  AVATAR_NUM,
   COMMENTS_NUM,
   Effects,
   BASE_URL,
@@ -34,5 +33,8 @@ export {
   Methods,
   RERENDER_DELAY,
   FILE_TYPES,
-  RANDOM_PHOTOS_COUNT
+  RANDOM_PHOTOS_COUNT,
+  MAX_SCALE_VALUE,
+  MIN_SCALE_VALUE,
+  SCALE_STEP
 };

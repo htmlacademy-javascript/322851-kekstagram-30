@@ -33,7 +33,6 @@ commentField.addEventListener('keydown', (evt) => {
 const onCancelButtonKeydown = (evt) => {
   if (isEscapeKey(evt) && !document.querySelector('.error')) {
     closeImageForm();
-    document.removeEventListener('keydown', onCancelButtonKeydown);
   }
 };
 
@@ -43,6 +42,7 @@ const onCancelButtonClick = () => {
 
 function closeImageForm() {
   editorBox.classList.add('hidden');
+  document.removeEventListener('keydown', onCancelButtonKeydown);
   pristine.reset();
   form.reset();
   cancelEffects();
