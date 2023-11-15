@@ -1,5 +1,6 @@
 const sliderElement = document.querySelector('.effect-level__slider');
 const sliderBox = document.querySelector('.img-upload__effect-level');
+const effectValue = document.querySelector('.effect-level__value');
 
 noUiSlider.create(sliderElement, {
   range: {
@@ -32,6 +33,9 @@ const updateSlider = ({min, max, start, step}) => {
     start: start,
     step: step,
     connect: 'lower'
+  });
+  sliderElement.noUiSlider.on('update', () => {
+    effectValue.setAttribute('value', sliderElement.noUiSlider.get());
   });
 };
 

@@ -7,7 +7,6 @@ const biggerScaleButton = document.querySelector('.scale__control--bigger');
 const smallerScaleButton = document.querySelector('.scale__control--smaller');
 const scaleValue = document.querySelector('.scale__control--value');
 const effectChoice = document.querySelector('.effects__list');
-const effectValue = document.querySelector('.effect-level__value');
 let currentEffect = 'none';
 
 sliderBox.classList.add('hidden');
@@ -26,7 +25,6 @@ const setScaleValue = (newScale) => {
 
 const applyEffect = () => {
   const value = sliderElement.noUiSlider.get();
-  effectValue.value = value;
   switch (currentEffect) {
     case 'chrome':
       img.style.filter = `grayscale(${value})`;
